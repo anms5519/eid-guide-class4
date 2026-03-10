@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ঈদুল ফিতরের ছুটির পড়া - গাইড</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Baloo+Da+2:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body
+        class="bg-slate-50 relative flex items-center justify-center h-[100dvh] w-screen overflow-hidden p-0 sm:p-4 md:p-8"
+    >
+        <div
+            class="max-w-6xl w-full h-full bg-white sm:rounded-[2rem] shadow-none sm:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 sm:border-4 border-slate-100"
+        >
+            <div
+                class="w-full md:w-1/3 lg:w-1/4 bg-gradient-to-b from-slate-50 to-blue-50 p-4 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col z-20 shrink-0 h-[35%] sm:h-[40%] md:h-full overflow-y-auto"
+            >
+                <div
+                    class="text-center mb-3 md:mb-6 bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border-2 border-slate-100 shrink-0 transform hover:rotate-[-2deg] transition-transform"
+                >
+                    <h1
+                        class="text-2xl md:text-4xl font-black text-indigo-600 mb-1 tracking-tight"
+                    >
+                        📚 আমার পড়া
+                    </h1>
+                    <p
+                        class="text-xs md:text-sm text-indigo-500 font-extrabold bg-indigo-50 rounded-full px-4 py-1 inline-block mt-2 border border-indigo-100"
+                    >
+                        ৪র্থ শ্রেণি • ঈদ গাইড 🌟
+                    </p>
+                </div>
+                <div
+                    class="bg-white p-4 md:p-5 rounded-2xl md:rounded-3xl shadow-sm md:shadow-md border border-slate-100 flex-grow flex flex-col items-center"
+                >
+                    <h2
+                        class="text-lg md:text-xl font-black text-slate-800 text-center mb-1 md:mb-2 animate-pulse-soft"
+                    >
+                        অগ্রগতি মাপকাঠি 🚀
+                    </h2>
+                    <p
+                        class="text-[10px] md:text-xs text-slate-400 mb-4 md:mb-6 text-center font-bold"
+                    >
+                        পড়া শেষ হলে ঝটপট টিক দাও! ✨
+                    </p>
+                    <div class="chart-container mb-6 shrink-0 relative">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                    <div
+                        class="w-full grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 mt-auto text-sm md:text-base"
+                    >
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-blue-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-blue-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-bangla"
+                                class="w-6 h-6 md:w-5 md:h-5 text-blue-600 rounded-md focus:ring-blue-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >📚 বাংলা</span
+                            >
+                        </label>
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-emerald-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-emerald-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-science"
+                                class="w-6 h-6 md:w-5 md:h-5 text-emerald-600 rounded-md focus:ring-emerald-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >🔬 বিজ্ঞান</span
+                            >
+                        </label>
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-rose-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-rose-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-english"
+                                class="w-6 h-6 md:w-5 md:h-5 text-rose-600 rounded-md focus:ring-rose-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >📝 English</span
+                            >
+                        </label>
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-violet-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-violet-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-arabic"
+                                class="w-6 h-6 md:w-5 md:h-5 text-violet-600 rounded-md focus:ring-violet-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >🕌 আরবি</span
+                            >
+                        </label>
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-orange-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-orange-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-math"
+                                class="w-6 h-6 md:w-5 md:h-5 text-orange-600 rounded-md focus:ring-orange-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >🧮 গণিত</span
+                            >
+                        </label>
+                        <label
+                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-2 rounded-xl hover:bg-teal-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-teal-100 active:scale-95"
+                        >
+                            <input
+                                type="checkbox"
+                                id="check-quran"
+                                class="w-6 h-6 md:w-5 md:h-5 text-teal-600 rounded-md focus:ring-teal-500 shrink-0"
+                                onchange="updateProgress()"
+                            />
+                            <span class="font-bold text-slate-700 truncate"
+                                >📖 কোরআন</span
+                            >
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full md:w-2/3 lg:w-3/4 flex-1 flex flex-col bg-white overflow-hidden relative"
+            >
+                <div
+                    class="flex overflow-x-auto hide-scrollbar sticky top-0 bg-white/80 backdrop-blur-xl z-30 shadow-sm px-4 py-3 shrink-0 gap-2 border-b border-slate-100"
+                >
+                    <button
+                        onclick="switchTab('bangla')"
+                        id="tab-bangla"
+                        class="tab-base"
+                    >
+                        <span>📚</span> বাংলা
+                    </button>
+                    <button
+                        onclick="switchTab('science')"
+                        id="tab-science"
+                        class="tab-base"
+                    >
+                        <span>🔬</span> বিজ্ঞান
+                    </button>
+                    <button
+                        onclick="switchTab('english')"
+                        id="tab-english"
+                        class="tab-base"
+                    >
+                        <span>📝</span> English
+                    </button>
+                    <button
+                        onclick="switchTab('arabic')"
+                        id="tab-arabic"
+                        class="tab-base"
+                    >
+                        <span>🕌</span> আরবি
+                    </button>
+                    <button
+                        onclick="switchTab('math')"
+                        id="tab-math"
+                        class="tab-base"
+                    >
+                        <span>🧮</span> গণিত
+                    </button>
+                    <button
+                        onclick="switchTab('quran')"
+                        id="tab-quran"
+                        class="tab-base"
+                    >
+                        <span>📖</span> কোরআন
+                    </button>
+                </div>
+                <div
+                    class="flex-1 p-4 md:p-8 overflow-y-auto pb-24"
+                    id="main-content-area"
+                >
+                    <div
+                        id="content-bangla"
+                        class="space-y-6 animate-pop-in hidden-section"
+                    >
+                        <div
+                            class="bg-blue-100 rounded-2xl p-5 border-2 border-blue-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl">💡</div>
+                            <div>
+                                <h3
+                                    class="text-blue-900 font-extrabold text-xl"
+                                >
+                                    আজকের লক্ষ্য:
+                                </h3>
+                                <p class="text-blue-800 font-medium mt-1">
+                                    দরখাস্ত লেখা শিখবো এবং পিতা-মাতার প্রতি
+                                    আমাদের দায়িত্বগুলো জানবো।
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition"
+                        >
+                            <h2
+                                class="text-xl font-extrabold text-slate-800 mb-4 border-b-2 border-slate-100 pb-3"
+                            >
+                                ১. দরখাস্ত: অসুস্থতার জন্য ছুটি
+                            </h2>
+                            <div
+                                class="text-slate-700 leading-relaxed space-y-2 text-base font-medium bg-slate-50 p-6 rounded-2xl"
+                            >
+                                <p><strong>বরাবর,</strong></p>
+                                <p>অধ্যক্ষ মহোদয়,</p>
+                                <p>তানযীমুল উম্মাহ হিফয মাদরাসা,</p>
+                                <p>আল-আকরাম শাখা।</p>
+                                <br />
+                                <p
+                                    class="bg-blue-100 p-2 rounded inline-block text-blue-900"
+                                >
+                                    <strong
+                                        >বিষয়: অসুস্থতার জন্য অনুপস্থিত থাকায়
+                                        ছুটি মঞ্জুরের আবেদন।</strong
+                                    >
+                                </p>
+                                <br /><br />
+                                <p><strong>জনাব,</strong></p>
+                                <p class="text-justify leading-loose">
+                                    বিনীত নিবেদন এই যে, আমি আপনার মাদরাসার
+                                    চতুর্থ শ্রেণির একজন নিয়মিত ছাত্র। গত
+                                    <input
+                                        type="text"
+                                        placeholder="১০ই মার্চ"
+                                        class="border-b-2 border-slate-400 bg-transparent w-24 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                    />
+                                    থেকে
+                                    <input
+                                        type="text"
+                                        placeholder="১২ই মার্চ"
+                                        class="border-b-2 border-slate-400 bg-transparent w-24 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                    />
+                                    তারিখ পর্যন্ত আমি ভীষণ জ্বরে আক্রান্ত ছিলাম।
+                                    অসুস্থতার কারণে উক্ত দিনগুলোতে আমি মাদরাসায়
+                                    উপস্থিত হতে পারিনি।
+                                </p>
+                                <p class="text-justify mt-4 leading-loose">
+                                    অতএব, মহোদয়ের নিকট বিনীত প্রার্থনা, আমাকে
+                                    উক্ত
+                                    <input
+                                        type="text"
+                                        placeholder="৩"
+                                        class="border-b-2 border-slate-400 bg-transparent w-12 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                    />
+                                    দিনের ছুটি মঞ্জুর করে বাধিত করবেন।
+                                </p>
+                                <br />
+                                <p><strong>বিনীত নিবেদক,</strong></p>
+                                <p>আপনার অনুগত ছাত্র,</p>
+                                <p>
+                                    নাম:
+                                    <input
+                                        type="text"
+                                        placeholder="তোমার নাম"
+                                        class="border-b-2 border-slate-400 bg-transparent w-40 focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                    />
+                                </p>
+                                <p>শ্রেণি: চতুর্থ (কুমার)</p>
+                                <p>
+                                    রোল নম্বর:
+                                    <input
+                                        type="text"
+                                        placeholder="রোল"
+                                        class="border-b-2 border-slate-400 bg-transparent w-20 focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                    />
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition"
+                        >
+                            <h2
+                                class="text-xl font-extrabold text-slate-800 mb-4 border-b-2 border-slate-100 pb-3 text-center"
+                            >
+                                ২. রচনা: মাতা-পিতার প্রতি কর্তব্য 👨‍👩‍👦
+                            </h2>
+                            <div
+                                class="space-y-4 text-slate-700 text-justify text-base font-medium leading-relaxed"
+                            >
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >ভূমিকা:</strong
+                                    >
+                                    পৃথিবীতে মাতা-পিতা আমাদের সবচেয়ে আপনজন এবং
+                                    পরম হিতৈষী বন্ধু। তাঁদের আদর-স্নেহ,
+                                    মায়া-মমতা ও যত্নেই আমরা ধীরে ধীরে বড় হয়ে
+                                    উঠি। আমাদের জীবনে তাঁদের অবদান ও আত্মত্যাগ
+                                    সবচেয়ে বেশি। তাই তাঁদের প্রতি আমাদের অনেক
+                                    দায়িত্ব ও কর্তব্য রয়েছে।
+                                </p>
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >মাতা-পিতার অবদান:</strong
+                                    >
+                                    মা আমাদের অনেক কষ্ট সহ্য করে গর্ভে ধারণ করেন
+                                    এবং জন্ম দেন। নিজের সবটুকু ভালোবাসা দিয়ে বড়
+                                    করেন। বাবা আমাদের জন্য অনেক হাড়ভাঙা পরিশ্রম
+                                    করেন। আমাদের খাবার, সুন্দর পোশাক, লেখাপড়ার
+                                    খরচ এবং সকল আবদার পূরণ করার জন্য বাবা দিনরাত
+                                    কাজ করেন। আমাদের সুখে তাঁরা হাসেন এবং আমাদের
+                                    কষ্টে তাঁরা কাঁদেন। নিজেদের সুখ বিসর্জন দিয়ে
+                                    তাঁরা আমাদের সুখী করতে চান।
+                                </p>
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >আমাদের কর্তব্য:</strong
+                                    >
+                                    মাতা-পিতার প্রতি আমাদের প্রধান কর্তব্য হলো
+                                    তাঁদের সর্বদা শ্রদ্ধা করা এবং তাঁদের
+                                    আদেশ-নিষেধ হাসিমুখে মেনে চলা। তাঁদের সাথে
+                                    সবসময় ভালো ও নম্র ব্যবহার করা উচিত। কখনো এমন
+                                    কোনো কাজ বা কথা বলা উচিত নয়, যাতে তাঁরা মনে
+                                    কষ্ট পান বা বিরক্ত হন। ঘরের বিভিন্ন কাজে
+                                    তাঁদের সাহায্য করাও আমাদের কর্তব্য। এছাড়া
+                                    মনোযোগ দিয়ে লেখাপড়া করে একজন আদর্শ মানুষ হয়ে
+                                    তাঁদের মুখ উজ্জ্বল করা আমাদের অন্যতম প্রধান
+                                    দায়িত্ব।
+                                </p>
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >বৃদ্ধ বয়সে মাতা-পিতার সেবা:</strong
+                                    >
+                                    বয়সের ভারে মাতা-পিতা একসময় বৃদ্ধ ও দুর্বল
+                                    হয়ে পড়েন। তখন তাঁরা অনেকটা শিশুদের মতো অসহায়
+                                    হয়ে যান। সে সময় তাঁদের সবচেয়ে বেশি প্রয়োজন
+                                    হয় আমাদের ভালোবাসা ও সেবার। তখন তাঁদের
+                                    চিকিৎসা করানো, সময় দেওয়া এবং সকল প্রয়োজন
+                                    মেটানো আমাদের অবশ্য পালনীয় কর্তব্য।
+                                </p>
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >ধর্মীয় দৃষ্টিকোণ:</strong
+                                    >
+                                    ইসলাম ধর্মে মাতা-পিতার সেবাকে অনেক বেশি
+                                    গুরুত্ব দেওয়া হয়েছে। হাদিসে বলা হয়েছে,
+                                    "মায়ের পায়ের নিচে সন্তানের বেহেশত।" তাই মহান
+                                    আল্লাহর সন্তুষ্টি লাভের জন্য মাতা-পিতার
+                                    খেদমত করা অত্যন্ত জরুরি।
+                                </p>
+                                <p>
+                                    <strong
+                                        class="text-blue-600 text-lg block mb-1"
+                                        >উপসংহার:</strong
+                                    >
+                                    মাতা-পিতা আমাদের জন্য মহান আল্লাহর এক অমূল্য
+                                    নিয়ামত। তাঁদের ঋণ আমরা কখনোই শোধ করতে পারব
+                                    খন না। তাই আমাদের সবসময় তাঁদের খেদমত করা
+                                    উচিত এবং মহান আল্লাহর কাছে তাঁদের জন্য দোয়া
+                                    করা উচিত।
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="content-math"
+                        class="hidden-section space-y-6 animate-pop-in"
+                    >
+                        <div
+                            class="bg-orange-100 rounded-2xl p-5 border-2 border-orange-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl text-orange-500">🧮</div>
+                            <div>
+                                <h3
+                                    class="text-orange-900 font-extrabold text-xl"
+                                >
+                                    মজার গণিত!
+                                </h3>
+                                <p class="text-orange-800 font-medium mt-1">
+                                    অধ্যায় ৩ (৪৭ ও ৪৮ পৃষ্ঠা) এর সবগুলো অঙ্ক চলো
+                                    সমাধান করি।
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >১. কুইজ</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    সঠিক উত্তরটি খুঁজে বের করো 🎯
+                                </h2>
+                            </div>
+                            <div id="math-mcq-container" class="space-y-6">
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >২. সংক্ষিপ্ত প্রশ্ন</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    ছোট প্রশ্নগুলোর উত্তর দাও 💡
+                                </h2>
+                            </div>
+                            <div id="math-short-qs-container" class="space-y-4">
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >৩. গুণ করি</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    ধাপে ধাপে গুণ শিখি ✏️
+                                </h2>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-4 font-bold">
+                                অঙ্কগুলোর নিচে 'কীভাবে হলো?' বাটনে চাপ দিয়ে
+                                নিয়মটি দেখে নাও।
+                            </p>
+                            <div
+                                id="math-multiplications-container"
+                                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                            >
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >৪. সহজ পদ্ধতি</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    সহজ পদ্ধতিতে গুণ করি ⚡
+                                </h2>
+                            </div>
+                            <div id="math-easy-mul-container" class="space-y-4">
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >৫-১২. কথার অঙ্ক</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    গল্প পড়ে সমাধান করি 📖
+                                </h2>
+                            </div>
+                            <div
+                                id="math-word-expanded-container"
+                                class="space-y-4"
+                            >
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >১৩. সৃজনশীল</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    নিচের বাক্য দিয়ে গল্প তৈরি করি 🧠
+                                </h2>
+                            </div>
+                            <div id="math-story-container" class="space-y-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="content-science"
+                        class="hidden-section space-y-6 animate-pop-in"
+                    >
+                        <div
+                            class="bg-emerald-100 rounded-2xl p-5 border-2 border-emerald-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl">🔬</div>
+                            <div>
+                                <h3
+                                    class="text-emerald-900 font-extrabold text-xl"
+                                >
+                                    বিজ্ঞানের জগৎ
+                                </h3>
+                                <p class="text-emerald-800 font-medium mt-1">
+                                    দুর্ঘটনা এবং প্রাথমিক চিকিৎসা সম্পর্কে
+                                    জানবো।
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >সংক্ষিপ্ত</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    ছোট প্রশ্ন ও উত্তর 💡
+                                </h2>
+                            </div>
+                            <div id="science-short-qs" class="space-y-4"></div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >রচনামূলক</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    বড় প্রশ্ন ও উত্তর 📝
+                                </h2>
+                            </div>
+                            <div id="science-broad-qs" class="space-y-4"></div>
+                        </div>
+                    </div>
+                    <div
+                        id="content-english"
+                        class="hidden-section space-y-6 animate-pop-in"
+                    >
+                        <div
+                            class="bg-rose-100 rounded-2xl p-5 border-2 border-rose-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl">📝</div>
+                            <div>
+                                <h3
+                                    class="text-rose-900 font-extrabold text-xl"
+                                >
+                                    Let's Read English!
+                                </h3>
+                                <p class="text-rose-800 font-medium mt-1">
+                                    Read the dialogue and understand the
+                                    meaning.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm"
+                        >
+                            <h2
+                                class="text-xl font-extrabold text-slate-800 mb-4 border-b-2 border-slate-100 pb-3 text-center"
+                            >
+                                Enjoying Annual Sports 🏃‍♂️
+                            </h2>
+                            <div
+                                class="bg-slate-50 p-4 md:p-6 rounded-2xl border-2 border-slate-100"
+                                id="chat-interface"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="content-arabic"
+                        class="hidden-section space-y-6 animate-pop-in"
+                    >
+                        <div
+                            class="bg-violet-100 rounded-2xl p-5 border-2 border-violet-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl">🕌</div>
+                            <div>
+                                <h3
+                                    class="text-violet-900 font-extrabold text-xl"
+                                >
+                                    আরবি ও দোয়া
+                                </h3>
+                                <p class="text-violet-800 font-medium mt-1">
+                                    দোয়া মুখস্থ করি এবং রূপান্তর শিখি।
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-violet-50 border border-violet-200 rounded-2xl p-5 shadow-sm"
+                        >
+                            <h3
+                                class="font-extrabold text-violet-900 text-lg mb-3 flex items-center gap-2"
+                            >
+                                <span>💡</span> কিছু কঠিন শব্দের সহজ অর্থ জেনে
+                                নিই:
+                            </h3>
+                            <ul
+                                class="space-y-2 text-slate-700 font-medium text-sm sm:text-base"
+                            >
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >صيغة (ছীগাহ):</strong
+                                    >
+                                    এর মানে হলো শব্দের রূপ বা আকার (Form)। যেমন-
+                                    'সে করল', 'তারা করল'।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >ماضي مطلق (মাযী মুতলাক):</strong
+                                    >
+                                    এর মানে হলো সাধারণ অতীত কাল (Past Tense)। যা
+                                    আগে হয়ে গেছে।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >معروف (মারুফ):</strong
+                                    >
+                                    কর্তৃবাচ্য (Active Voice)। যেখানে কাজটা কে
+                                    করেছে তা জানা যায়।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >مجهول (মাজহুল):</strong
+                                    >
+                                    কর্মবাচ্য (Passive Voice)। যেখানে কাজটা কে
+                                    করেছে তা জানা যায় না, শুধু কাজটার কথা বলা
+                                    হয়।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >غائب (গায়িব):</strong
+                                    >
+                                    নাম পুরুষ (Third Person)। অর্থাৎ, 'সে' বা
+                                    'তারা'।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >حاضر (হাযির):</strong
+                                    >
+                                    মধ্যম পুরুষ (Second Person)। অর্থাৎ, 'তুমি'
+                                    বা 'তোমরা'।
+                                </li>
+                                <li>
+                                    <strong
+                                        class="text-violet-700 bg-white px-2 py-1 rounded shadow-sm border border-violet-100"
+                                        >متكلم (মুতাকাল্লিম):</strong
+                                    >
+                                    উত্তম পুরুষ (First Person)। অর্থাৎ, 'আমি' বা
+                                    'আমরা'।
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-5 shadow-sm text-center"
+                        >
+                            <div
+                                class="w-full font-extrabold text-slate-800 flex justify-between items-center text-lg mb-6 border-b-2 border-slate-100 pb-3"
+                            >
+                                <span>১ম পত্র: الدُّعَاءُ (দোয়া) 🤲</span>
+                                <span
+                                    class="text-violet-600 bg-violet-100 px-3 py-1 rounded-full text-sm font-bold"
+                                    >উচ্চারণ: আদ-দু'আউ (অর্থ: দোয়া) • পৃষ্ঠা
+                                    ১২</span
+                                >
+                            </div>
+                            <div id="dua-content">
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-slate-800 leading-loose"
+                                    >
+                                        يَا إِلَهَ الْعَالَمِينَا - يَا مُجِيبَ
+                                        السَّائِلِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: ইয়া ইলাহাল আলামীনা - ইয়া
+                                        মুজীবাস সায়িলীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: হে বিশ্বজগতের প্রতিপালক! হে
+                                        প্রার্থনাকারীদের সাড়াদানকারী!
+                                    </p>
+                                </div>
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-violet-700 leading-loose"
+                                    >
+                                        هَبْ لَنَا مِنْكَ رَشَادًا - وَثَبَاتًا
+                                        وَيَقِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: হাব লানা মিনকা রাশাদান - ওয়া
+                                        সাবাতাওঁ ওয়া ইয়াকীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: আমাদেরকে আপনার পক্ষ থেকে হেদায়েত,
+                                        দৃঢ়তা ও মজবুত বিশ্বাস দান করুন।
+                                    </p>
+                                </div>
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-slate-800 leading-loose"
+                                    >
+                                        رَبِّ جَمِّلْنَا بِعِلْمٍ - وَاهْدِنَا
+                                        دُنْيَا وَدِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: রাব্বি জাম্মিলনা বি'ইলমিন -
+                                        ওয়াহদিনা দুনয়া ওয়া দীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: হে আমার রব! আমাদেরকে জ্ঞান দ্বারা
+                                        সুশোভিত করুন এবং দুনিয়া ও দ্বীনের সঠিক
+                                        পথ দেখান।
+                                    </p>
+                                </div>
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-violet-700 leading-loose"
+                                    >
+                                        وَاحْمِنَا مِنْ كُلِّ سُوءٍ - وَانْشُرِ
+                                        الْخَيْرَاتِ فِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: ওয়াহমিনা মিন কুল্লি সু-ইন -
+                                        ওয়াংশুরিল খাইরাতি ফীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: আমাদেরকে সকল প্রকার বিপদ থেকে
+                                        রক্ষা করুন এবং আমাদের মাঝে কল্যাণ
+                                        ছড়িয়ে দিন।
+                                    </p>
+                                </div>
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-slate-800 leading-loose"
+                                    >
+                                        وَامْنَحِ الْإِسْلَامَ عِزًّا - يَبْعَثُ
+                                        النَّصْرَ الْمُبِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: ওয়ামনাহিল ইসলামা 'ইযযান -
+                                        ইয়াবআসুন্ নাসরাল মুবীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: ইসলামকে এমন সম্মান দান করুন, যা
+                                        সুস্পষ্ট বিজয় বয়ে আনে।
+                                    </p>
+                                </div>
+                                <div
+                                    class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm"
+                                >
+                                    <p
+                                        class="font-arabic text-3xl md:text-4xl text-violet-700 leading-loose"
+                                    >
+                                        يَا إِلَهَ الْعَالَمِينَا - يَا إِلَهَ
+                                        الْعَالَمِينَا
+                                    </p>
+                                    <p
+                                        class="text-indigo-600 font-bold text-sm md:text-base mt-4"
+                                    >
+                                        উচ্চারণ: ইয়া ইলাহাল আলামীনা - ইয়া
+                                        ইলাহাল আলামীনা
+                                    </p>
+                                    <p
+                                        class="text-slate-700 font-medium text-sm md:text-base mt-2"
+                                    >
+                                        অর্থ: হে বিশ্বজগতের প্রতিপালক! হে
+                                        বিশ্বজগতের প্রতিপালক!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl overflow-hidden shadow-sm"
+                        >
+                            <div class="bg-violet-600 p-5">
+                                <h2
+                                    class="text-white font-extrabold text-xl mb-1"
+                                >
+                                    ২য় পত্র: ماضي مطلق (মাযী মুতলাক) এর রূপান্তর
+                                </h2>
+                                <p
+                                    class="text-violet-200 text-sm mb-4 font-medium"
+                                >
+                                    তাইসীরুল মীযান ওয়াল মুনশাইব (পৃষ্ঠা ১৬-১৯)
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <select
+                                        id="arabic-bahs-selector"
+                                        class="flex-grow p-3 rounded-xl bg-white text-slate-800 text-sm md:text-base font-bold focus:outline-none focus:ring-4 focus:ring-violet-300"
+                                        onchange="renderArabicTable()"
+                                    >
+                                        <option value="maroof_mushbat">
+                                            إثبات فعل ماضي مطلق معروف (উচ্চারণ:
+                                            ইছবাত ফি'ল মাযী মুতলাক মারূফ -
+                                            হাঁ-বাচক কর্তৃবাচ্য)
+                                        </option>
+                                        <option value="majhool_mushbat">
+                                            إثبات فعل ماضي مطلق مجهول (উচ্চারণ:
+                                            ইছবাত ফি'ল মাযী মুতলাক মাজহূল -
+                                            হাঁ-বাচক কর্মবাচ্য)
+                                        </option>
+                                        <option value="maroof_nafi">
+                                            نفي فعل ماضي مطلق معروف (উচ্চারণ:
+                                            নাফী ফি'ল মাযী মুতলাক মারূফ -
+                                            না-বাচক কর্তৃবাচ্য)
+                                        </option>
+                                        <option value="majhool_nafi">
+                                            نفي فعل ماضي مطلق مجهول (উচ্চারণ:
+                                            নাফী ফি'ল মাযী মুতলাক মাজহূল -
+                                            না-বাচক কর্মবাচ্য)
+                                        </option>
+                                    </select>
+                                    <button
+                                        onclick="toggleMeaningBlur()"
+                                        id="blur-btn"
+                                        class="bg-violet-800 text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-violet-900 transition flex-shrink-0 shadow-inner"
+                                    >
+                                        👁️ অর্থ লুকান
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto bg-slate-50 p-2">
+                                <table
+                                    class="w-full text-center border-collapse"
+                                >
+                                    <thead>
+                                        <tr
+                                            class="text-slate-500 border-b-2 border-slate-200 text-sm uppercase tracking-wider"
+                                        >
+                                            <th
+                                                class="p-3 w-1/3 font-extrabold"
+                                            >
+                                                صيغة (ছীগাহর নাম) ও উচ্চারণ
+                                            </th>
+                                            <th
+                                                class="p-3 w-1/3 font-extrabold"
+                                            >
+                                                রূপান্তর ও উচ্চারণ
+                                            </th>
+                                            <th
+                                                class="p-3 w-1/3 font-extrabold"
+                                            >
+                                                অর্থ
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        id="arabic-table-body"
+                                        class="bg-white"
+                                    >
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div
+                                class="bg-violet-50 p-4 text-sm text-violet-800 text-center font-bold"
+                            >
+                                💡 টিপস: "অর্থ লুকান" বাটনে ক্লিক করে নিজে নিজে
+                                অর্থ বলার চেষ্টা করো!
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl p-5 shadow-sm"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b-2 border-slate-100 pb-3 mb-5"
+                            >
+                                <span
+                                    class="bg-violet-500 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                    >অনুশীলনী</span
+                                >
+                                <h2
+                                    class="text-xl font-extrabold text-slate-800"
+                                >
+                                    নিজে করি ✍️
+                                </h2>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="border-2 border-slate-100 rounded-2xl p-4 bg-slate-50"
+                                >
+                                    <p
+                                        class="font-extrabold text-slate-800 text-base mb-3"
+                                    >
+                                        ১. নমুনা অনুসারে نَصَرَ (উচ্চারণ: নাসারা
+                                        - অর্থ: সে সাহায্য করল) এর রূপান্তর দিয়ে
+                                        অবশিষ্ট ছীগাহগুলো (মাজি মুতলাক মারুফ)
+                                        হলো:
+                                    </p>
+                                    <div
+                                        class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center"
+                                    >
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرَ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারা</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرَا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারা-</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرُوا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারূ</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرَتْ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারাত</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرَتَا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারাতা-</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْنَ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারনা</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتَ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতা</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتُمَا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতুমা-</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتُمْ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতুম</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتِ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতি</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتُمَا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতুমা-</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتُنَّ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতুন্না</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْتُ</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারতু</span
+                                            >
+                                        </div>
+                                        <div
+                                            class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center"
+                                        >
+                                            <span
+                                                class="font-arabic text-2xl text-violet-800"
+                                                >نَصَرْنَا</span
+                                            >
+                                            <span
+                                                class="text-xs text-slate-500 font-bold mt-1"
+                                                >উচ্চারণ: নাসারনা-</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border-2 border-slate-100 rounded-2xl p-4 bg-slate-50"
+                                >
+                                    <p
+                                        class="font-extrabold text-slate-800 text-base mb-3"
+                                    >
+                                        ২. আয়াতগুলো থেকে ماضي (মাযী - অতীত কাল)
+                                        এর ছীগাহগুলো নির্বাচন:
+                                    </p>
+                                    <ul
+                                        class="space-y-3 font-medium text-slate-700 text-sm md:text-base"
+                                    >
+                                        <li
+                                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 rounded-xl border border-slate-200 gap-3"
+                                        >
+                                            <span
+                                                class="font-arabic text-xl sm:text-lg w-full sm:w-auto text-right"
+                                                dir="rtl"
+                                                >وَأَمَّا الَّذِينَ كَفَرُوا...
+                                                <br /><span
+                                                    class="text-sm font-sans text-slate-500"
+                                                    >(উচ্চারণ: ওয়া
+                                                    আম্মাল্লাযীনা
+                                                    কাফারূ...)</span
+                                                ></span
+                                            >
+                                            <div
+                                                class="bg-violet-50 px-4 py-2 rounded-lg text-left sm:text-right w-full sm:w-auto"
+                                            >
+                                                <span
+                                                    class="text-violet-700 font-arabic text-2xl font-bold"
+                                                    >كَفَرُوا</span
+                                                >
+                                                <span
+                                                    class="text-sm text-slate-600 font-bold block sm:inline sm:ml-2"
+                                                    >উচ্চারণ: কাফারূ (অর্থ: তারা
+                                                    কুফরি করেছে)</span
+                                                >
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 rounded-xl border border-slate-200 gap-3"
+                                        >
+                                            <span
+                                                class="font-arabic text-xl sm:text-lg w-full sm:w-auto text-right"
+                                                dir="rtl"
+                                                >وَمَا أَنزَلَ اللَّهُ...
+                                                <br /><span
+                                                    class="text-sm font-sans text-slate-500"
+                                                    >(উচ্চারণ: ওয়া মা
+                                                    আনযালাল্লাহু...)</span
+                                                ></span
+                                            >
+                                            <div
+                                                class="bg-violet-50 px-4 py-2 rounded-lg text-left sm:text-right w-full sm:w-auto"
+                                            >
+                                                <span
+                                                    class="text-violet-700 font-arabic text-2xl font-bold"
+                                                    >أَنزَلَ</span
+                                                >
+                                                <span
+                                                    class="text-sm text-slate-600 font-bold block sm:inline sm:ml-2"
+                                                    >উচ্চারণ: আনযালা (অর্থ: তিনি
+                                                    অবতীর্ণ করেছেন)</span
+                                                >
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 rounded-xl border border-slate-200 gap-3"
+                                        >
+                                            <span
+                                                class="font-arabic text-xl sm:text-lg w-full sm:w-auto text-right"
+                                                dir="rtl"
+                                                >وَتَقَطَّعَتْ بِهِمُ
+                                                الْأَسْبَابُ <br /><span
+                                                    class="text-sm font-sans text-slate-500"
+                                                    >(উচ্চারণ: ওয়া
+                                                    তাক্বাত্বত্বা'আত বিহিমুল
+                                                    আসবাব)</span
+                                                ></span
+                                            >
+                                            <div
+                                                class="bg-violet-50 px-4 py-2 rounded-lg text-left sm:text-right w-full sm:w-auto"
+                                            >
+                                                <span
+                                                    class="text-violet-700 font-arabic text-2xl font-bold"
+                                                    >تَقَطَّعَتْ</span
+                                                >
+                                                <span
+                                                    class="text-sm text-slate-600 font-bold block sm:inline sm:ml-2"
+                                                    >উচ্চারণ: তাক্বাত্বত্বা'আত
+                                                    (অর্থ: ছিন্নভিন্ন হয়ে
+                                                    গেছে)</span
+                                                >
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 rounded-xl border border-slate-200 gap-3"
+                                        >
+                                            <span
+                                                class="font-arabic text-xl sm:text-lg w-full sm:w-auto text-right"
+                                                dir="rtl"
+                                                >وَأَنشَأْنَا مِن بَعْدِهِمْ...
+                                                <br /><span
+                                                    class="text-sm font-sans text-slate-500"
+                                                    >(উচ্চারণ: ওয়া আনশা'না মিম
+                                                    বা'দিহিম...)</span
+                                                ></span
+                                            >
+                                            <div
+                                                class="bg-violet-50 px-4 py-2 rounded-lg text-left sm:text-right w-full sm:w-auto"
+                                            >
+                                                <span
+                                                    class="text-violet-700 font-arabic text-2xl font-bold"
+                                                    >أَنشَأْنَا</span
+                                                >
+                                                <span
+                                                    class="text-sm text-slate-600 font-bold block sm:inline sm:ml-2"
+                                                    >উচ্চারণ: আনশা'না (অর্থ: আমি
+                                                    সৃষ্টি করেছি)</span
+                                                >
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-3 rounded-xl border border-slate-200 gap-3"
+                                        >
+                                            <span
+                                                class="font-arabic text-xl sm:text-lg w-full sm:w-auto text-right"
+                                                dir="rtl"
+                                                >إِنِّي كَفَرْتُ بِمَا
+                                                أَشْرَكْتُمُونِ... <br /><span
+                                                    class="text-sm font-sans text-slate-500"
+                                                    >(উচ্চারণ: ইন্নী কাফারতু
+                                                    বিমা আশরাকতুমূনি...)</span
+                                                ></span
+                                            >
+                                            <div
+                                                class="bg-violet-50 px-4 py-2 rounded-lg text-left sm:text-right w-full sm:w-auto"
+                                            >
+                                                <span
+                                                    class="text-violet-700 font-arabic text-2xl font-bold"
+                                                    >كَفَرْتُ</span
+                                                >
+                                                <span
+                                                    class="text-sm text-slate-600 font-bold block sm:inline sm:ml-2"
+                                                    >উচ্চারণ: কাফারতু (অর্থ: আমি
+                                                    অস্বীকার করেছি)</span
+                                                >
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="content-quran"
+                        class="hidden-section space-y-6 animate-pop-in"
+                    >
+                        <div
+                            class="bg-teal-100 rounded-2xl p-5 border-2 border-teal-200 flex items-center gap-4"
+                        >
+                            <div class="text-4xl">��</div>
+                            <div>
+                                <h3
+                                    class="text-teal-900 font-extrabold text-xl"
+                                >
+                                    কোরআন মাজিদ
+                                </h3>
+                                <p class="text-teal-800 font-medium mt-1">
+                                    সূরা আদিয়াতের অর্থসহ মুখস্থ করি.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-slate-100 rounded-3xl overflow-hidden shadow-sm"
+                        >
+                            <div
+                                class="bg-teal-600 text-white text-center py-4 font-extrabold text-xl"
+                            >
+                                ১। সূরা আদিয়াতের ১ম ৫ আয়াত অর্থসহ লিখ।
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-100 text-slate-700">
+                                            <th
+                                                class="p-4 border-b-2 border-slate-200 text-center w-1/2 font-extrabold"
+                                            >
+                                                আরবি ও উচ্চারণ
+                                            </th>
+                                            <th
+                                                class="p-4 border-b-2 border-slate-200 text-center border-l-2 border-slate-200 w-1/2 font-extrabold"
+                                            >
+                                                বাংলা অর্থ
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-teal-50 transition">
+                                            <td
+                                                class="p-4 border-b border-slate-100 text-center"
+                                                dir="rtl"
+                                            >
+                                                <div
+                                                    class="font-arabic text-3xl text-slate-800 leading-loose"
+                                                >
+                                                    وَالْعَادِيَاتِ ضَبْحًا
+                                                </div>
+                                                <div
+                                                    class="text-teal-700 font-bold text-sm mt-2 font-sans"
+                                                    dir="ltr"
+                                                >
+                                                    উচ্চারণ: ওয়াল 'আ-দিয়া-তি
+                                                    দ্বাবহা
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 border-b border-slate-100 border-l-2 border-slate-200 text-base font-medium text-slate-700 leading-relaxed text-center"
+                                            >
+                                                শপথ সেই দ্রুতগামী ঘোড়াদের, যারা
+                                                দৌড়াতে দৌড়াতে হাঁপায়।
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="bg-slate-50 hover:bg-teal-50 transition"
+                                        >
+                                            <td
+                                                class="p-4 border-b border-slate-100 text-center"
+                                                dir="rtl"
+                                            >
+                                                <div
+                                                    class="font-arabic text-3xl text-slate-800 leading-loose"
+                                                >
+                                                    فَالْمُورِيَاتِ قَدْحًا
+                                                </div>
+                                                <div
+                                                    class="text-teal-700 font-bold text-sm mt-2 font-sans"
+                                                    dir="ltr"
+                                                >
+                                                    উচ্চারণ: ফালমূরিয়া-তি
+                                                    ক্বাদহা
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 border-b border-slate-100 border-l-2 border-slate-200 text-base font-medium text-slate-700 leading-relaxed text-center"
+                                            >
+                                                অতঃপর তারা খুর দিয়ে আগুনের
+                                                স্ফুলিঙ্গ বের করে।
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-teal-50 transition">
+                                            <td
+                                                class="p-4 border-b border-slate-100 text-center"
+                                                dir="rtl"
+                                            >
+                                                <div
+                                                    class="font-arabic text-3xl text-slate-800 leading-loose"
+                                                >
+                                                    فَالْمُغِيرَاتِ صُبْحًا
+                                                </div>
+                                                <div
+                                                    class="text-teal-700 font-bold text-sm mt-2 font-sans"
+                                                    dir="ltr"
+                                                >
+                                                    উচ্চারণ: ফালমুগীরা-তি সুবহা
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 border-b border-slate-100 border-l-2 border-slate-200 text-base font-medium text-slate-700 leading-relaxed text-center"
+                                            >
+                                                অতঃপর তারা ভোরবেলায় আক্রমণ করে।
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="bg-slate-50 hover:bg-teal-50 transition"
+                                        >
+                                            <td
+                                                class="p-4 border-b border-slate-100 text-center"
+                                                dir="rtl"
+                                            >
+                                                <div
+                                                    class="font-arabic text-3xl text-slate-800 leading-loose"
+                                                >
+                                                    فَأَثَرْنَ بِهِ نَقْعًا
+                                                </div>
+                                                <div
+                                                    class="text-teal-700 font-bold text-sm mt-2 font-sans"
+                                                    dir="ltr"
+                                                >
+                                                    উচ্চারণ: ফাআছারনা বিহি
+                                                    নাক্ব'আ
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 border-b border-slate-100 border-l-2 border-slate-200 text-base font-medium text-slate-700 leading-relaxed text-center"
+                                            >
+                                                ফলে তারা সেখানে ধুলোর ঝড় তুলে
+                                                দেয়।
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-teal-50 transition">
+                                            <td
+                                                class="p-4 border-b border-slate-100 text-center"
+                                                dir="rtl"
+                                            >
+                                                <div
+                                                    class="font-arabic text-3xl text-slate-800 leading-loose"
+                                                >
+                                                    فَوَسَطْنَ بِهِ جَمْعًا
+                                                </div>
+                                                <div
+                                                    class="text-teal-700 font-bold text-sm mt-2 font-sans"
+                                                    dir="ltr"
+                                                >
+                                                    উচ্চারণ: ফাওয়াসাত্বনা বিহি
+                                                    জাম'আ
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 border-b border-slate-100 border-l-2 border-slate-200 text-base font-medium text-slate-700 leading-relaxed text-center"
+                                            >
+                                                এবং তারা শত্রুদের দলের মাঝখানে
+                                                ঢুকে পড়ে।
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

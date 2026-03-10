@@ -1,0 +1,195 @@
+:root {
+    --primary: #6366f1;
+    --primary-light: #e0e7ff;
+    --secondary: #ec4899;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --background: #fdfeff;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: "Baloo Da 2", "Amiri", sans-serif;
+    background-color: var(--background);
+    color: #334155;
+    overscroll-behavior: none;
+    transition: background-color 0.5s ease;
+}
+
+.font-arabic {
+    font-family: "Amiri", serif;
+}
+
+/* Playful Button Hover Effects */
+button, .cursor-pointer {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button:hover:not(:disabled), .cursor-pointer:hover {
+    transform: scale(1.05) translateY(-2px);
+    filter: brightness(1.05);
+}
+
+button:active:not(:disabled), .cursor-pointer:active {
+    transform: scale(0.95);
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 140px;
+    margin: 0 auto;
+    height: 140px;
+    transition: transform 0.5s ease;
+}
+
+.chart-container:hover {
+    transform: rotate(5deg) scale(1.1);
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        max-width: 200px;
+        height: 200px;
+    }
+}
+
+.hidden-section {
+    display: none;
+}
+
+/* Custom Scrollbar - Playful */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+    border: 3px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Tab Transitions */
+.tab-base {
+    flex-shrink: 0;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #64748b;
+    border-bottom: 4px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 16px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-active {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.blur-text {
+    filter: blur(8px);
+    user-select: none;
+    transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+.blur-text:hover {
+    filter: blur(0px);
+}
+
+.math-steps {
+    font-family: 'Baloo Da 2', monospace;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #1e293b;
+}
+
+/* Animations */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-1deg); }
+    75% { transform: translateX(5px) rotate(1deg); }
+}
+
+.animate-shake {
+    animation: shake 0.4s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.animate-pulse-soft {
+    animation: pulse-soft 2s infinite;
+}
+
+/* Confetti Enhanced */
+.confetti {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Better Mobile Targets */
+@media (max-width: 640px) {
+    .tab-base {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+    }
+    
+    input[type="checkbox"] {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .p-4 { padding: 1.25rem !important; }
+}
