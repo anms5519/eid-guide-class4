@@ -967,20 +967,22 @@ window.clearHistory = function() {
 };
 
 window.toggleFullscreen = function() {
-    const btn = document.getElementById('fullscreen-btn');
     const icon = document.getElementById('fs-icon');
+    const text = document.getElementById('fs-text');
 
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().then(() => {
             document.body.classList.add('is-fullscreen');
-            icon.innerText = '❐'; 
+            if (icon) icon.innerText = '❐'; 
+            if (text) text.innerText = 'ছোট করুন';
         }).catch(err => {
-            alert(`Error: ${err.message}`);
+            console.error(`Error: ${err.message}`);
         });
     } else {
         document.exitFullscreen().then(() => {
             document.body.classList.remove('is-fullscreen');
-            icon.innerText = '⛶';
+            if (icon) icon.innerText = '⛶';
+            if (text) text.innerText = 'পুরো স্ক্রিন';
         });
     }
 };
@@ -988,14 +990,27 @@ window.toggleFullscreen = function() {
 // Handle escape key or other ways of exiting fullscreen
 document.addEventListener('fullscreenchange', () => {
     const icon = document.getElementById('fs-icon');
+    const text = document.getElementById('fs-text');
     if (!document.fullscreenElement) {
         document.body.classList.remove('is-fullscreen');
         if (icon) icon.innerText = '⛶';
+        if (text) text.innerText = 'পুরো স্ক্রিন';
     } else {
         document.body.classList.add('is-fullscreen');
         if (icon) icon.innerText = '❐';
+        if (text) text.innerText = 'ছোট করুন';
     }
 });
+
+// Add interactivity to sidebar buttons
+function enhanceSidebarInteractivity() {
+    const buttons = document.querySelectorAll('.tab-base, #fullscreen-btn, button[onclick^="clearHistory"]');
+    buttons.forEach(btn => {
+        btn.addEventListener('mousedown', () => btn.classList.add('scale-90'));
+        btn.addEventListener('mouseup', () => btn.classList.remove('scale-90'));
+        btn.addEventListener('mouseleave', () => btn.classList.remove('scale-90'));
+    });
+}
 
 // Update updateProgress to save state
 window.updateProgress = function (triggerConfetti = true) {
