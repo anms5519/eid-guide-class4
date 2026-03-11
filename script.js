@@ -746,6 +746,105 @@ function renderEnglish() {
         .join("");
     chatContainer.innerHTML = `<div class="flex flex-col">${html}</div>`;
 }
+function initChart() {
+    const ctx = document.getElementById("progressChart").getContext("2d");
+    currentState.chartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["বাকি", "শেষ"],
+            datasets: [
+                {
+                    data: [100, 0],
+                    backgroundColor: ["#f1f5f9", "#3b82f6"],
+                    borderWidth: 0,
+                    borderRadius: 10,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "75%",
+            plugins: { legend: { display: false } },
+            animation: { animateScale: true, animateRotate: true },
+        },
+        plugins: [
+            {
+                id: "textCenter",
+                beforeDraw: function (chart) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+                    ctx.restore();
+                    var fontSize = (height / 100).toFixed(2);
+                    ctx.font =
+                        "900 " + fontSize + "em 'Baloo Da 2', sans-serif";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = "#1e293b";
+                    var text = chart.data.datasets[0].data[1] + "%",
+                        textX = Math.round(
+                            (width - ctx.measureText(text).width) / 2
+                        ),
+                        textY = height / 2;
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                },
+            },
+        ],
+    });
+}
+
+function createConfetti(count = 50) {
+    const colors = ["#6366f1", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"];
+    const shapes = ['square', 'circle', 'triangle'];
+    
+    for (let i = 0; i < count; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        const size = Math.random() * 12 + 6 + "px";
+        
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.animation = `fall ${Math.random() * 2 + 2}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+        
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        if (shape === 'triangle') {
+            conf.style.width = "0";
+            conf.style.height = "0";
+            conf.style.backgroundColor = "transparent";
+            conf.style.borderLeft = (parseFloat(size)/2) + "px solid transparent";
+            conf.style.borderRight = (parseFloat(size)/2) + "px solid transparent";
+            conf.style.borderBottom = size + ` solid ${color}`;
+        } else {
+            conf.style.width = size;
+            conf.style.height = size;
+            conf.style.backgroundColor = color;
+            if (shape === 'circle') conf.style.borderRadius = "50%";
+        }
+        
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 4000);
+    }
+}
+
+window.toggleMeaningBlur = function () {
+    currentState.isMeaningBlurred = !currentState.isMeaningBlurred;
+    const btn = document.getElementById("blur-btn");
+    const cells = document.querySelectorAll(".meaning-cell");
+    if (currentState.isMeaningBlurred) {
+        btn.innerHTML = "👁️‍🗨️ অর্থ দেখান";
+        btn.classList.replace("bg-violet-800", "bg-slate-500");
+        btn.classList.replace("hover:bg-violet-900", "hover:bg-slate-600");
+        cells.forEach((c) => c.classList.add("blur-text"));
+    } else {
+        btn.innerHTML = "👁️ অর্থ লুকান";
+        btn.classList.replace("bg-slate-500", "bg-violet-800");
+        btn.classList.replace("hover:bg-slate-600", "hover:bg-violet-900");
+        cells.forEach((c) => c.classList.remove("blur-text"));
+    }
+};
+
 window.renderArabicTable = function () {
     const selection = document.getElementById("arabic-bahs-selector").value;
     const data = arabicData[selection];
