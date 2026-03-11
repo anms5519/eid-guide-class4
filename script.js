@@ -1012,6 +1012,24 @@ function enhanceSidebarInteractivity() {
     });
 }
 
+window.toggleSidebar = function() {
+    const sidebar = document.getElementById('main-sidebar');
+    const content = document.getElementById('content-container');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const icon = document.getElementById('toggle-icon');
+
+    const isHidden = sidebar.classList.toggle('sidebar-hidden');
+    content.classList.toggle('content-expanded');
+
+    if (isHidden) {
+        icon.innerText = '▶';
+        toggleBtn.style.left = '1rem';
+    } else {
+        icon.innerText = '◀';
+        toggleBtn.style.left = 'calc(80px + 1rem)';
+    }
+};
+
 // Update updateProgress to save state
 window.updateProgress = function (triggerConfetti = true) {
     const subjects = ["bangla", "science", "english", "arabic", "math", "quran"];

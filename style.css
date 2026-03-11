@@ -231,7 +231,62 @@ button:active:not(:disabled), .cursor-pointer:active {
     }
 }
 
-/* Fullscreen Transitions */
+/* Sidebar Toggle States */
+@media (max-width: 767px) {
+    .sidebar-hidden {
+        transform: translateX(-100%);
+        width: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    .content-expanded {
+        width: 100% !important;
+    }
+
+    #sidebar-toggle {
+        display: flex;
+    }
+}
+
+#sidebar-toggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Landscape Overlay */
+#landscape-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #6366f1;
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+@media (orientation: portrait) and (max-width: 1024px) {
+    #landscape-overlay {
+        display: flex;
+    }
+}
+
+.rotate-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: rotate-device 2s infinite;
+}
+
+@keyframes rotate-device {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Existing transitions ... */
 #fs-icon {
     display: inline-block;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
