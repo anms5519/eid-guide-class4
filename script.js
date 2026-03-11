@@ -778,6 +778,11 @@ window.checkAnswer = function (qId, selectedIdx, correctIdx) {
     let selectedBtn = document.getElementById(`btn-${qId}-${selectedIdx}`);
     selectedBtn.classList.remove("opacity-60", "grayscale-[0.5]");
     
+    // Save answer state
+    const mcqAnswers = JSON.parse(localStorage.getItem('mcqAnswers') || '{}');
+    mcqAnswers[qId] = { selectedIdx, correctIdx };
+    localStorage.setItem('mcqAnswers', JSON.stringify(mcqAnswers));
+
     if (selectedIdx === correctIdx) {
         selectedBtn.className = "bg-emerald-50 border-4 border-emerald-500 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-lg scale-105 transition-all animate-bounce-soft";
         selectedBtn.innerHTML += " <span class='text-2xl'>🎉 ✅</span>";
@@ -792,114 +797,113 @@ window.checkAnswer = function (qId, selectedIdx, correctIdx) {
         correctBtn.innerHTML += " <span class='animate-pulse-soft ml-auto'>👈 এটা সঠিক!</span>";
     }
 };
-window.toggleMeaningBlur = function () {
-    currentState.isMeaningBlurred = !currentState.isMeaningBlurred;
-    const btn = document.getElementById("blur-btn");
-    const cells = document.querySelectorAll(".meaning-cell");
-    if (currentState.isMeaningBlurred) {
-        btn.innerHTML = "👁️‍🗨️ অর্থ দেখান";
-        btn.classList.replace("bg-violet-800", "bg-slate-500");
-        btn.classList.replace("hover:bg-violet-900", "hover:bg-slate-600");
-        cells.forEach((c) => c.classList.add("blur-text"));
-    } else {
-        btn.innerHTML = "👁️ অর্থ লুকান";
-        btn.classList.replace("bg-slate-500", "bg-violet-800");
-        btn.classList.replace("hover:bg-slate-600", "hover:bg-violet-900");
-        cells.forEach((c) => c.classList.remove("blur-text"));
+
+window.saveInputs = function() {
+    const inputs = ['input-date-from', 'input-date-to', 'input-days', 'input-name', 'input-roll'];
+    const data = {};
+    inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) data[id] = el.value;
+    });
+    localStorage.setItem('appInputs', JSON.stringify(data));
+};
+
+window.loadPersistence = function() {
+    // Load Checkboxes
+    const subjects = ["bangla", "science", "english", "arabic", "math", "quran"];
+    const progress = JSON.parse(localStorage.getItem('subjectProgress') || '{}');
+    subjects.forEach(s => {
+        if (progress[s]) {
+            document.getElementById(`check-${s}`).checked = true;
+        }
+    });
+    updateProgress(false); // Update chart without confetti
+
+    // Load Inputs
+    const inputs = JSON.parse(localStorage.getItem('appInputs') || '{}');
+    for (const id in inputs) {
+        const el = document.getElementById(id);
+        if (el) el.value = inputs[id];
+    }
+
+    // Load MCQ States
+    const mcqAnswers = JSON.parse(localStorage.getItem('mcqAnswers') || '{}');
+    for (const qId in mcqAnswers) {
+        const { selectedIdx, correctIdx } = mcqAnswers[qId];
+        restoreMCQAnswer(qId, selectedIdx, correctIdx);
     }
 };
-function initChart() {
-    const ctx = document.getElementById("progressChart").getContext("2d");
-    currentState.chartInstance = new Chart(ctx, {
-        type: "doughnut",
-        data: {
-            labels: ["বাকি", "শেষ"],
-            datasets: [
-                {
-                    data: [100, 0],
-                    backgroundColor: ["#f1f5f9", "#3b82f6"],
-                    borderWidth: 0,
-                    borderRadius: 10,
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: "75%",
-            plugins: { legend: { display: false } },
-            animation: { animateScale: true, animateRotate: true },
-        },
-        plugins: [
-            {
-                id: "textCenter",
-                beforeDraw: function (chart) {
-                    var width = chart.width,
-                        height = chart.height,
-                        ctx = chart.ctx;
-                    ctx.restore();
-                    var fontSize = (height / 100).toFixed(2);
-                    ctx.font =
-                        "900 " + fontSize + "em 'Baloo Da 2', sans-serif";
-                    ctx.textBaseline = "middle";
-                    ctx.fillStyle = "#1e293b";
-                    var text = chart.data.datasets[0].data[1] + "%",
-                        textX = Math.round(
-                            (width - ctx.measureText(text).width) / 2
-                        ),
-                        textY = height / 2;
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-                },
-            },
-        ],
-    });
-}
-function createConfetti(count = 50) {
-    const colors = ["#6366f1", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"];
-    const shapes = ['square', 'circle', 'triangle'];
+
+function restoreMCQAnswer(qId, selectedIdx, correctIdx) {
+    const btn = document.getElementById(`btn-${qId}-${selectedIdx}`);
+    if (!btn) return;
     
-    for (let i = 0; i < count; i++) {
-        let conf = document.createElement("div");
-        conf.className = "confetti";
-        const size = Math.random() * 12 + 6 + "px"; // Slightly larger pieces
-        
-        conf.style.left = Math.random() * 100 + "vw";
-        conf.style.animation = `fall ${Math.random() * 2 + 2}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
-        
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        if (shape === 'triangle') {
-            conf.style.width = "0";
-            conf.style.height = "0";
-            conf.style.backgroundColor = "transparent";
-            conf.style.borderLeft = (parseFloat(size)/2) + "px solid transparent";
-            conf.style.borderRight = (parseFloat(size)/2) + "px solid transparent";
-            conf.style.borderBottom = size + ` solid ${color}`;
-        } else {
-            conf.style.width = size;
-            conf.style.height = size;
-            conf.style.backgroundColor = color;
-            if (shape === 'circle') conf.style.borderRadius = "50%";
+    const parent = btn.parentElement;
+    const buttons = parent.querySelectorAll('button');
+    buttons.forEach(b => {
+        b.disabled = true;
+        b.classList.add("opacity-60", "grayscale-[0.5]");
+    });
+
+    btn.classList.remove("opacity-60", "grayscale-[0.5]");
+    if (selectedIdx === correctIdx) {
+        btn.className = "bg-emerald-50 border-4 border-emerald-500 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-lg scale-105 transition-all";
+        btn.innerHTML += " <span class='text-2xl'>✅</span>";
+    } else {
+        btn.className = "bg-rose-50 border-4 border-rose-500 text-rose-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-md";
+        btn.innerHTML += " <span class='text-2xl'>❌</span>";
+        let correctBtn = document.getElementById(`btn-${qId}-${correctIdx}`);
+        if (correctBtn) {
+            correctBtn.classList.remove("opacity-60", "grayscale-[0.5]");
+            correctBtn.className = "bg-emerald-50 border-4 border-emerald-400 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-sm opacity-100";
         }
-        
-        document.body.appendChild(conf);
-        setTimeout(() => conf.remove(), 4000);
     }
 }
-window.updateProgress = function () {
+
+window.clearHistory = function() {
+    if (confirm("আপনি কি নিশ্চিত যে আপনি সমস্ত অগ্রগতির তথ্য মুছে ফেলতে চান?")) {
+        localStorage.clear();
+        location.reload();
+    }
+};
+
+window.toggleFullscreen = function() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+        document.getElementById('fs-icon').innerText = '⛶'; // Exit icon could be ❐
+    } else {
+        document.exitFullscreen();
+        document.getElementById('fs-icon').innerText = '⛶';
+    }
+};
+
+// Update updateProgress to save state
+window.updateProgress = function (triggerConfetti = true) {
     const subjects = ["bangla", "science", "english", "arabic", "math", "quran"];
     let done = 0;
+    const progress = {};
     subjects.forEach((s) => {
-        if (document.getElementById(`check-${s}`).checked) done++;
+        const isChecked = document.getElementById(`check-${s}`).checked;
+        if (isChecked) {
+            done++;
+            progress[s] = true;
+        } else {
+            progress[s] = false;
+        }
     });
+    
+    localStorage.setItem('subjectProgress', JSON.stringify(progress));
+
     const pct = Math.round((done / subjects.length) * 100);
     let color = "#6366f1"; // Primary
     
     if (pct === 100) {
         color = "#10b981"; // Success
-        for(let i=0; i<6; i++) setTimeout(() => createConfetti(60), i * 300);
+        if (triggerConfetti) {
+            for(let i=0; i<6; i++) setTimeout(() => createConfetti(60), i * 300);
+        }
     } else if (pct >= 50) color = "#8b5cf6"; // Violet
     else if (pct > 0) color = "#f59e0b"; // Accent
     
@@ -909,11 +913,15 @@ window.updateProgress = function () {
         currentState.chartInstance.update();
     }
 };
+
 window.onload = () => {
     renderScience();
     renderEnglish();
     renderArabicTable();
     renderMath();
     initChart();
-    switchTab("arabic");
+    switchTab("bangla");
+    
+    // Load persisted data
+    setTimeout(loadPersistence, 100);
 };

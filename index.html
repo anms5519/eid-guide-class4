@@ -182,12 +182,27 @@
                                 ><span class="hidden md:inline">📖 </span>কোরআন</span
                             >
                         </label>
+                        <button
+                            onclick="clearHistory()"
+                            class="mt-4 w-full py-2 px-3 bg-rose-100 text-rose-600 rounded-xl font-bold text-[10px] sm:text-xs md:text-sm hover:bg-rose-200 transition border border-rose-200 flex items-center justify-center gap-2"
+                        >
+                            <span>🗑️</span> ইতিহাস মুছুন
+                        </button>
                     </div>
                 </div>
             </div>
             <div
                 class="w-[calc(100%-80px)] sm:w-[calc(100%-100px)] md:w-2/3 lg:w-3/4 flex-1 flex flex-col bg-white overflow-hidden relative"
             >
+                <!-- Fullscreen Toggler (Creative) -->
+                <button
+                    id="fullscreen-btn"
+                    onclick="toggleFullscreen()"
+                    class="fixed bottom-6 right-6 z-50 w-12 h-12 md:w-14 md:h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center text-xl md:text-2xl hover:bg-indigo-700 transition-all hover:scale-110 active:scale-90 animate-pulse-soft border-4 border-white"
+                    title="Fullscreen Mode"
+                >
+                    <span id="fs-icon">⛶</span>
+                </button>
                 <!-- Desktop Navigation (Hidden on small screens) -->
                 <div
                     class="hidden md:flex overflow-x-auto hide-scrollbar sticky top-0 bg-white/80 backdrop-blur-xl z-30 shadow-sm px-4 py-3 shrink-0 gap-2 border-b border-slate-100"
@@ -284,14 +299,18 @@
                                     চতুর্থ শ্রেণির একজন নিয়মিত ছাত্র। গত
                                     <input
                                         type="text"
+                                        id="input-date-from"
                                         placeholder="১০ই মার্চ"
                                         class="border-b-2 border-slate-400 bg-transparent w-24 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                        oninput="saveInputs()"
                                     />
                                     থেকে
                                     <input
                                         type="text"
+                                        id="input-date-to"
                                         placeholder="১২ই মার্চ"
                                         class="border-b-2 border-slate-400 bg-transparent w-24 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                        oninput="saveInputs()"
                                     />
                                     তারিখ পর্যন্ত আমি ভীষণ জ্বরে আক্রান্ত ছিলাম।
                                     অসুস্থতার কারণে উক্ত দিনগুলোতে আমি মাদরাসায়
@@ -302,8 +321,10 @@
                                     উক্ত
                                     <input
                                         type="text"
+                                        id="input-days"
                                         placeholder="৩"
                                         class="border-b-2 border-slate-400 bg-transparent w-12 text-center focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                        oninput="saveInputs()"
                                     />
                                     দিনের ছুটি মঞ্জুর করে বাধিত করবেন।
                                 </p>
@@ -314,17 +335,21 @@
                                     নাম:
                                     <input
                                         type="text"
+                                        id="input-name"
                                         placeholder="তোমার নাম"
                                         class="border-b-2 border-slate-400 bg-transparent w-40 focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                        oninput="saveInputs()"
                                     />
                                 </p>
-                                <p>শ্রেণি: চতুর্থ (কুমার)</p>
+                                <p>শ্রেণি: চতুর্থ (कुमार)</p>
                                 <p>
                                     রোল নম্বর:
                                     <input
                                         type="text"
+                                        id="input-roll"
                                         placeholder="রোল"
                                         class="border-b-2 border-slate-400 bg-transparent w-20 focus:outline-none focus:border-blue-500 text-blue-700 font-bold px-1"
+                                        oninput="saveInputs()"
                                     />
                                 </p>
                             </div>
