@@ -37,14 +37,21 @@ button:active:not(:disabled), .cursor-pointer:active {
 .chart-container {
     position: relative;
     width: 100%;
-    max-width: 140px;
+    max-width: 80px;
     margin: 0 auto;
-    height: 140px;
+    height: 80px;
     transition: transform 0.5s ease;
 }
 
 .chart-container:hover {
     transform: rotate(5deg) scale(1.1);
+}
+
+@media (min-width: 640px) {
+    .chart-container {
+        max-width: 140px;
+        height: 140px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -87,20 +94,31 @@ button:active:not(:disabled), .cursor-pointer:active {
 /* Tab Transitions */
 .tab-base {
     flex-shrink: 0;
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem;
     text-align: center;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #64748b;
     border-bottom: 4px solid transparent;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    white-space: nowrap;
     cursor: pointer;
-    border-radius: 16px;
-    margin-right: 8px;
+    border-radius: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
+}
+
+@media (min-width: 768px) {
+    .tab-base {
+        padding: 0.75rem 1.25rem;
+        font-size: 1.1rem;
+        flex-direction: row;
+        margin-right: 8px;
+        border-radius: 16px;
+        gap: 8px;
+        white-space: nowrap;
+    }
 }
 
 .tab-active {
@@ -160,6 +178,25 @@ button:active:not(:disabled), .cursor-pointer:active {
     animation: pulse-soft 2s infinite;
 }
 
+@keyframes bounce-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.animate-bounce-soft {
+    animation: bounce-soft 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes glow-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.animate-glow-pulse {
+    animation: glow-pulse 1.5s infinite;
+}
+
 /* Confetti Enhanced */
 .confetti {
     position: fixed;
@@ -181,15 +218,15 @@ button:active:not(:disabled), .cursor-pointer:active {
 
 /* Better Mobile Targets */
 @media (max-width: 640px) {
-    .tab-base {
-        padding: 0.6rem 1rem;
-        font-size: 1rem;
-    }
-    
     input[type="checkbox"] {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.25rem;
+        height: 1.25rem;
     }
     
-    .p-4 { padding: 1.25rem !important; }
-}
+    .p-4 { padding: 1rem !important; }
+
+    /* Touch target accessibility */
+    button, .tab-base {
+        min-height: 44px;
+    }
+}

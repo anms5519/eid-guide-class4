@@ -16,170 +16,205 @@
         class="bg-slate-50 relative flex items-center justify-center h-[100dvh] w-screen overflow-hidden p-0 sm:p-4 md:p-8"
     >
         <div
-            class="max-w-6xl w-full h-full bg-white sm:rounded-[2rem] shadow-none sm:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 sm:border-4 border-slate-100"
+            class="max-w-6xl w-full h-full bg-white sm:rounded-[2rem] shadow-none sm:shadow-2xl overflow-hidden flex flex-row border-0 sm:border-4 border-slate-100"
         >
             <div
-                class="w-full md:w-1/3 lg:w-1/4 bg-gradient-to-b from-slate-50 to-blue-50 p-4 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col z-20 shrink-0 h-[35%] sm:h-[40%] md:h-full overflow-y-auto"
+                class="w-[80px] sm:w-[100px] md:w-1/3 lg:w-1/4 bg-gradient-to-b from-slate-50 to-blue-50 p-2 md:p-4 border-r border-slate-200 flex flex-col z-20 shrink-0 h-full overflow-y-auto"
             >
                 <div
-                    class="text-center mb-3 md:mb-6 bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border-2 border-slate-100 shrink-0 transform hover:rotate-[-2deg] transition-transform"
+                    class="text-center mb-2 md:mb-6 bg-white p-2 md:p-5 rounded-2xl md:rounded-[2rem] shadow-sm border-2 border-slate-100 shrink-0 transform hover:rotate-[-2deg] transition-transform"
                 >
                     <h1
-                        class="text-2xl md:text-4xl font-black text-indigo-600 mb-1 tracking-tight"
+                        class="text-xl sm:text-2xl md:text-4xl font-black text-indigo-600 mb-1 tracking-tight"
                     >
-                        📚 আমার পড়া
+                        <span class="md:hidden">📚</span><span class="hidden md:inline">📚 আমার পড়া</span>
                     </h1>
                     <p
-                        class="text-xs md:text-sm text-indigo-500 font-extrabold bg-indigo-50 rounded-full px-4 py-1 inline-block mt-2 border border-indigo-100"
+                        class="hidden md:inline-block text-xs md:text-sm text-indigo-500 font-extrabold bg-indigo-50 rounded-full px-4 py-1 mt-2 border border-indigo-100"
                     >
                         ৪র্থ শ্রেণি • ঈদ গাইড 🌟
                     </p>
                 </div>
+                
+                <!-- Mobile Navigation (Visible only on small screens) -->
+                <div class="flex flex-col gap-2 mb-4 md:hidden shrink-0">
+                    <button
+                        onclick="switchTab('bangla')"
+                        class="tab-btn-bangla tab-base p-2"
+                    >
+                        <span class="text-xl">📚</span> <span class="text-[10px] sm:text-xs">বাংলা</span>
+                    </button>
+                    <button
+                        onclick="switchTab('science')"
+                        class="tab-btn-science tab-base p-2"
+                    >
+                        <span class="text-xl">🔬</span> <span class="text-[10px] sm:text-xs">বিজ্ঞান</span>
+                    </button>
+                    <button
+                        onclick="switchTab('english')"
+                        class="tab-btn-english tab-base p-2"
+                    >
+                        <span class="text-xl">📝</span> <span class="text-[10px] sm:text-xs">English</span>
+                    </button>
+                    <button
+                        onclick="switchTab('arabic')"
+                        class="tab-btn-arabic tab-base p-2"
+                    >
+                        <span class="text-xl">🕌</span> <span class="text-[10px] sm:text-xs">আরবি</span>
+                    </button>
+                    <button
+                        onclick="switchTab('math')"
+                        class="tab-btn-math tab-base p-2"
+                    >
+                        <span class="text-xl">🧮</span> <span class="text-[10px] sm:text-xs">গণিত</span>
+                    </button>
+                    <button
+                        onclick="switchTab('quran')"
+                        class="tab-btn-quran tab-base p-2"
+                    >
+                        <span class="text-xl">📖</span> <span class="text-[10px] sm:text-xs">কোরআন</span>
+                    </button>
+                </div>
                 <div
-                    class="bg-white p-4 md:p-5 rounded-2xl md:rounded-3xl shadow-sm md:shadow-md border border-slate-100 flex-grow flex flex-col items-center"
+                    class="bg-white p-2 md:p-5 rounded-2xl md:rounded-3xl shadow-sm md:shadow-md border border-slate-100 flex-grow flex flex-col items-center"
                 >
                     <h2
-                        class="text-lg md:text-xl font-black text-slate-800 text-center mb-1 md:mb-2 animate-pulse-soft"
+                        class="text-[10px] sm:text-xs md:text-xl font-black text-slate-800 text-center mb-1 md:mb-2 animate-pulse-soft"
                     >
-                        অগ্রগতি মাপকাঠি 🚀
+                        <span class="md:hidden">গতি</span><span class="hidden md:inline">অগ্রগতি মাপকাঠি 🚀</span>
                     </h2>
                     <p
-                        class="text-[10px] md:text-xs text-slate-400 mb-4 md:mb-6 text-center font-bold"
+                        class="hidden md:block text-[10px] md:text-xs text-slate-400 mb-4 md:mb-6 text-center font-bold"
                     >
                         পড়া শেষ হলে ঝটপট টিক দাও! ✨
                     </p>
-                    <div class="chart-container mb-6 shrink-0 relative">
+                    <div class="chart-container mb-4 md:mb-6 shrink-0 relative">
                         <canvas id="progressChart"></canvas>
                     </div>
                     <div
-                        class="w-full grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 mt-auto text-sm md:text-base"
+                        class="w-full flex flex-col gap-1 md:gap-3 mt-auto text-xs sm:text-sm md:text-base"
                     >
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-blue-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-blue-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-blue-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-blue-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-bangla"
-                                class="w-6 h-6 md:w-5 md:h-5 text-blue-600 rounded-md focus:ring-blue-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-blue-600 rounded-md focus:ring-blue-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >📚 বাংলা</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">📚 </span>বাংলা</span
                             >
                         </label>
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-emerald-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-emerald-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-emerald-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-emerald-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-science"
-                                class="w-6 h-6 md:w-5 md:h-5 text-emerald-600 rounded-md focus:ring-emerald-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-emerald-600 rounded-md focus:ring-emerald-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >🔬 বিজ্ঞান</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">🔬 </span>বিজ্ঞান</span
                             >
                         </label>
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-rose-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-rose-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-rose-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-rose-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-english"
-                                class="w-6 h-6 md:w-5 md:h-5 text-rose-600 rounded-md focus:ring-rose-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-rose-600 rounded-md focus:ring-rose-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >📝 English</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">📝 </span>Eng</span
                             >
                         </label>
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-violet-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-violet-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-violet-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-violet-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-arabic"
-                                class="w-6 h-6 md:w-5 md:h-5 text-violet-600 rounded-md focus:ring-violet-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-violet-600 rounded-md focus:ring-violet-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >🕌 আরবি</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">🕌 </span>আরবি</span
                             >
                         </label>
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-3 md:p-2 rounded-xl hover:bg-orange-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-orange-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-orange-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-orange-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-math"
-                                class="w-6 h-6 md:w-5 md:h-5 text-orange-600 rounded-md focus:ring-orange-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-orange-600 rounded-md focus:ring-orange-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >🧮 গণিত</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">🧮 </span>গণিত</span
                             >
                         </label>
                         <label
-                            class="flex items-center space-x-2 md:space-x-3 cursor-pointer p-2 rounded-xl hover:bg-teal-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-teal-100 active:scale-95"
+                            class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-1 md:space-y-0 md:space-x-3 cursor-pointer p-1 md:p-2 rounded-xl hover:bg-teal-50 bg-slate-50 md:bg-transparent transition border border-transparent hover:border-teal-100 active:scale-95"
                         >
                             <input
                                 type="checkbox"
                                 id="check-quran"
-                                class="w-6 h-6 md:w-5 md:h-5 text-teal-600 rounded-md focus:ring-teal-500 shrink-0"
+                                class="w-4 h-4 md:w-5 md:h-5 text-teal-600 rounded-md focus:ring-teal-500 shrink-0"
                                 onchange="updateProgress()"
                             />
-                            <span class="font-bold text-slate-700 truncate"
-                                >📖 কোরআন</span
+                            <span class="font-bold text-slate-700 truncate text-[10px] sm:text-xs md:text-base"
+                                ><span class="hidden md:inline">📖 </span>কোরআন</span
                             >
                         </label>
                     </div>
                 </div>
             </div>
             <div
-                class="w-full md:w-2/3 lg:w-3/4 flex-1 flex flex-col bg-white overflow-hidden relative"
+                class="w-[calc(100%-80px)] sm:w-[calc(100%-100px)] md:w-2/3 lg:w-3/4 flex-1 flex flex-col bg-white overflow-hidden relative"
             >
+                <!-- Desktop Navigation (Hidden on small screens) -->
                 <div
-                    class="flex overflow-x-auto hide-scrollbar sticky top-0 bg-white/80 backdrop-blur-xl z-30 shadow-sm px-4 py-3 shrink-0 gap-2 border-b border-slate-100"
+                    class="hidden md:flex overflow-x-auto hide-scrollbar sticky top-0 bg-white/80 backdrop-blur-xl z-30 shadow-sm px-4 py-3 shrink-0 gap-2 border-b border-slate-100"
                 >
                     <button
                         onclick="switchTab('bangla')"
-                        id="tab-bangla"
-                        class="tab-base"
+                        class="tab-btn-bangla tab-base"
                     >
                         <span>📚</span> বাংলা
                     </button>
                     <button
                         onclick="switchTab('science')"
-                        id="tab-science"
-                        class="tab-base"
+                        class="tab-btn-science tab-base"
                     >
                         <span>🔬</span> বিজ্ঞান
                     </button>
                     <button
                         onclick="switchTab('english')"
-                        id="tab-english"
-                        class="tab-base"
+                        class="tab-btn-english tab-base"
                     >
                         <span>📝</span> English
                     </button>
                     <button
                         onclick="switchTab('arabic')"
-                        id="tab-arabic"
-                        class="tab-base"
+                        class="tab-btn-arabic tab-base"
                     >
                         <span>🕌</span> আরবি
                     </button>
                     <button
                         onclick="switchTab('math')"
-                        id="tab-math"
-                        class="tab-base"
+                        class="tab-btn-math tab-base"
                     >
                         <span>🧮</span> গণিত
                     </button>
                     <button
                         onclick="switchTab('quran')"
-                        id="tab-quran"
-                        class="tab-base"
+                        class="tab-btn-quran tab-base"
                     >
                         <span>📖</span> কোরআন
                     </button>

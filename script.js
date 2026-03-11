@@ -566,19 +566,23 @@ window.switchTab = function (subject) {
     };
     
     subjects.forEach((s) => {
-        const tab = document.getElementById(`tab-${s}`);
-        tab.classList.remove("tab-active", "bg-white", "shadow-lg", "text-slate-900", "scale-105");
-        tab.style.borderBottomColor = "transparent";
-        tab.style.color = "#64748b";
+        const tabs = document.querySelectorAll(`.tab-btn-${s}`);
+        tabs.forEach(tab => {
+            tab.classList.remove("tab-active", "bg-white", "shadow-lg", "shadow-sm", "text-slate-900", "scale-105");
+            tab.style.borderBottomColor = "transparent";
+            tab.style.color = "#64748b";
+        });
         document.getElementById(`content-${s}`).style.display = "none";
     });
 
-    const activeTab = document.getElementById(`tab-${subject}`);
+    const activeTabs = document.querySelectorAll(`.tab-btn-${subject}`);
     const activeColor = `var(--${colors[subject]}-500, ${colors[subject]})`;
     
-    activeTab.classList.add("tab-active", "bg-white", "shadow-sm", "scale-105");
-    activeTab.style.borderBottomColor = colors[subject];
-    activeTab.style.color = "#1e293b";
+    activeTabs.forEach(activeTab => {
+        activeTab.classList.add("tab-active", "bg-white", "shadow-sm", "scale-105");
+        activeTab.style.borderBottomColor = colors[subject];
+        activeTab.style.color = "#1e293b";
+    });
     
     const content = document.getElementById(`content-${subject}`);
     content.style.display = "block";
@@ -587,7 +591,17 @@ window.switchTab = function (subject) {
     content.classList.add("animate-pop-in");
     
     document.getElementById("main-content-area").scrollTop = 0;
-    activeTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    
+    // Only scroll the desktop tab into view if it's visible, else scroll the mobile tab
+    const desktopTab = document.querySelector(`.tab-btn-${subject}.hidden.md\\:flex`) || document.querySelector(".hidden.md\\:flex .tab-btn-" + subject);
+    if (desktopTab && window.innerWidth >= 768) {
+         desktopTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    } else {
+         const mobileTab = document.querySelector(`.md\\:hidden .tab-btn-${subject}`);
+         if (mobileTab) {
+             mobileTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+         }
+    }
     
     // Smooth background transition
     document.body.style.backgroundColor = `rgba(${subject === 'bangla' ? '99,102,241,0.05' : 
@@ -765,16 +779,16 @@ window.checkAnswer = function (qId, selectedIdx, correctIdx) {
     selectedBtn.classList.remove("opacity-60", "grayscale-[0.5]");
     
     if (selectedIdx === correctIdx) {
-        selectedBtn.className = "bg-emerald-50 border-4 border-emerald-500 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-lg scale-105 transition-all";
-        selectedBtn.innerHTML += " <span class='text-2xl animate-bounce'>🎉 ✅</span>";
-        createConfetti(15);
+        selectedBtn.className = "bg-emerald-50 border-4 border-emerald-500 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-lg scale-105 transition-all animate-bounce-soft";
+        selectedBtn.innerHTML += " <span class='text-2xl'>🎉 ✅</span>";
+        createConfetti(25);
     } else {
         selectedBtn.className = "bg-rose-50 border-4 border-rose-500 text-rose-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-md animate-shake";
         selectedBtn.innerHTML += " <span class='text-2xl'>❌</span>";
         
         let correctBtn = document.getElementById(`btn-${qId}-${correctIdx}`);
         correctBtn.classList.remove("opacity-60", "grayscale-[0.5]");
-        correctBtn.className = "bg-emerald-50 border-4 border-emerald-400 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-sm opacity-100";
+        correctBtn.className = "bg-emerald-50 border-4 border-emerald-400 text-emerald-800 rounded-2xl px-4 py-3 text-lg font-black text-left flex items-center gap-3 shadow-sm opacity-100 animate-glow-pulse";
         correctBtn.innerHTML += " <span class='animate-pulse-soft ml-auto'>👈 এটা সঠিক!</span>";
     }
 };
@@ -848,20 +862,26 @@ function createConfetti(count = 50) {
     for (let i = 0; i < count; i++) {
         let conf = document.createElement("div");
         conf.className = "confetti";
-        const size = Math.random() * 10 + 8 + "px";
-        conf.style.width = size;
-        conf.style.height = size;
+        const size = Math.random() * 12 + 6 + "px"; // Slightly larger pieces
+        
         conf.style.left = Math.random() * 100 + "vw";
-        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         conf.style.animation = `fall ${Math.random() * 2 + 2}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
         
         const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        if (shape === 'circle') conf.style.borderRadius = "50%";
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
         if (shape === 'triangle') {
+            conf.style.width = "0";
+            conf.style.height = "0";
             conf.style.backgroundColor = "transparent";
-            conf.style.borderLeft = "5px solid transparent";
-            conf.style.borderRight = "5px solid transparent";
-            conf.style.borderBottom = `10px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+            conf.style.borderLeft = (parseFloat(size)/2) + "px solid transparent";
+            conf.style.borderRight = (parseFloat(size)/2) + "px solid transparent";
+            conf.style.borderBottom = size + ` solid ${color}`;
+        } else {
+            conf.style.width = size;
+            conf.style.height = size;
+            conf.style.backgroundColor = color;
+            if (shape === 'circle') conf.style.borderRadius = "50%";
         }
         
         document.body.appendChild(conf);
@@ -879,7 +899,7 @@ window.updateProgress = function () {
     
     if (pct === 100) {
         color = "#10b981"; // Success
-        for(let i=0; i<4; i++) setTimeout(() => createConfetti(40), i * 400);
+        for(let i=0; i<6; i++) setTimeout(() => createConfetti(60), i * 300);
     } else if (pct >= 50) color = "#8b5cf6"; // Violet
     else if (pct > 0) color = "#f59e0b"; // Accent
     
