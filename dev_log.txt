@@ -1,0 +1,153 @@
+[project.ts]: detectFrameworks
+[project.ts]: detectBuildSystem
+[project.ts]: detectWorkspaces
+[project.ts]: detectPackageManager
+[project.ts]: detectFrameworksInPath - undefined
+ΓÇï
+Γ¥» Initial build environment
+context: dev
+cwd: D:\projects\class4
+featureFlags: []
+mode: cli
+repositoryRoot: D:\projects\class4
+siteId: d6de3546-8af4-473c-99a1-62ff754434b8
+ΓÇï
+Γ¥» UI build settings
+baseRelDir: true
+build:
+  command: "# no build command"
+functionsDirectory: netlify/functions
+ΓÇï
+Γ¥» Resolved build environment
+branch: master
+buildDir: D:\projects\class4
+context: dev
+env:
+  - DEPLOY_ID
+  - BUILD_ID
+  - ACCOUNT_ID
+  - REPOSITORY_URL
+  - NETLIFY_LOCAL
+  - HEAD
+  - COMMIT_REF
+  - CACHED_COMMIT_REF
+  - PULL_REQUEST
+  - LANG
+  - LANGUAGE
+  - LC_ALL
+  - GATSBY_TELEMETRY_DISABLED
+  - NEXT_TELEMETRY_DISABLED
+ΓÇï
+Γ¥» Resolved config
+build:
+  command: "# no build command"
+  commandOrigin: ui
+  publish: D:\projects\class4
+  publishOrigin: default
+functionsDirectory: D:\projects\class4\netlify\functions
+winston:create-logger: Define prototype method for "error"
+winston:create-logger: Define prototype method for "warn"
+winston:create-logger: Define prototype method for "info"
+winston:create-logger: Define prototype method for "http"
+winston:create-logger: Define prototype method for "verbose"
+winston:create-logger: Define prototype method for "debug"
+winston:create-logger: Define prototype method for "silly"
+winston:create-logger: Define prototype method for "error"
+winston:create-logger: Define prototype method for "warn"
+winston:create-logger: Define prototype method for "info"
+winston:create-logger: Define prototype method for "http"
+winston:create-logger: Define prototype method for "verbose"
+winston:create-logger: Define prototype method for "debug"
+winston:create-logger: Define prototype method for "silly"
+Γ¼Ñ Injecting environment variable values for all scopes
+Γ¼Ñ AI Gateway is disabled for this account
+Γ¼Ñ Ignored general context env var: LANG (defined in process)
+[project.ts]: getBuildSettings
+[project.ts]: detectFrameworks
+[get-build-settings.ts] getBuildSettings for baseDirectory: 
+Γ¼Ñ No app server detected. Using simple static server
+Γ¼Ñ Unable to determine public folder to serve files from. Using current working directory
+Γ¼Ñ Setup a netlify.toml file with a [dev] section to specify your dev server settings.
+Γ¼Ñ See docs at: https://docs.netlify.com/cli/local-development/#project-detection
+Γ¼Ñ Running static server from "class4"
+Γ¼Ñ Setting up local dev server
+[96m[1mΓÇï[22m[39m
+[96m[1mNetlify Build                                                 [22m[39m
+[96m[1mΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ[22m[39m
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Version[22m[39m
+  @netlify/build 35.8.3
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Flags[22m[39m
+  cwd: D:\projects\class4
+  debug: true
+  edgeFunctionsBootstrapURL: https://v2-17-1--edge.netlify.com/bootstrap/index-combined.ts
+  mode: cli
+  quiet: false
+  siteId: d6de3546-8af4-473c-99a1-62ff754434b8
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Current directory[22m[39m
+  D:\projects\class4
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Config file[22m[39m
+  No config file was defined: using default values.
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Resolved config[22m[39m
+  build:
+    command: "# no build command"
+    commandOrigin: ui
+    publish: D:\projects\class4
+    publishOrigin: default
+  functionsDirectory: D:\projects\class4\netlify\functions
+[36m[1mΓÇï[22m[39m
+[36m[1mΓ¥» Context[22m[39m
+  dev
+{"outputFlusher":{"flushed":false}} Cleaned up .netlify\functions-internal.
+[91m[1mΓÇï[22m[39m
+[91m[1mInternal error during "dev.command"                           [22m[39m
+[91m[1mΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ[22m[39m
+ΓÇï
+  [31m[1mError message[22m[39m
+  Error: listen EADDRINUSE: address already in use ::1:3999
+ΓÇï
+  [31m[1mError location[22m[39m
+  During dev.command
+      at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+      at listenInCluster (node:net:1997:12)
+      at GetAddrInfoReqWrap.callback (node:net:2206:7)
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:134:8)
+ΓÇï
+  [31m[1mError properties[22m[39m
+  {
+    code: [32m'EADDRINUSE'[39m,
+    errno: [33m-4091[39m,
+    syscall: [32m'listen'[39m,
+    address: [32m'::1'[39m,
+    port: [33m3999[39m
+  }
+ΓÇï
+  [31m[1mResolved config[22m[39m
+  build:
+    command: "# no build command"
+    commandOrigin: ui
+    publish: D:\projects\class4
+    publishOrigin: default
+  functionsDirectory: D:\projects\class4\netlify\functions
+ ┬╗   Warning: Error: Could not start local development server
+ ┬╗   
+ ┬╗   listen EADDRINUSE: address already in use ::1:3999
+ ┬╗   
+ ┬╗   Error: listen EADDRINUSE: address already in use ::1:3999
+ ┬╗       at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+ ┬╗       at listenInCluster (node:net:1997:12)
+ ┬╗       at GetAddrInfoReqWrap.callback (node:net:2206:7)
+ ┬╗       at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:134:8)
+ ┬╗       at toError (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/utils/command-helpers.js:143:16)
+ ┬╗       at logAndThrowError (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/utils/command-helpers.js:149:17)
+ ┬╗       at runNetlifyBuild (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/utils/run-build.js:120:16)
+ ┬╗       at async dev (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/commands/dev/dev.js:159:53)
+ ┬╗       at async BaseCommand.<anonymous> (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/commands/dev/index.js:74:9)
+ ┬╗       at async BaseCommand.parseAsync (C:\Users\UseR\AppData\Roaming\npm\node_modules\netlify-cli\node_modules\commander\lib\command.js:1092:5)
+ ┬╗       at async runProgram (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/dist/utils/run-program.js:11:5)
+ ┬╗       at async main (file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/bin/run.js:55:5)
+ ┬╗       at async file:///C:/Users/UseR/AppData/Roaming/npm/node_modules/netlify-cli/bin/run.js:66:1
