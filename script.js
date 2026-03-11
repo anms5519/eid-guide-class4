@@ -868,16 +868,35 @@ window.clearHistory = function() {
 };
 
 window.toggleFullscreen = function() {
+    const btn = document.getElementById('fullscreen-btn');
+    const icon = document.getElementById('fs-icon');
+
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-            alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        document.documentElement.requestFullscreen().then(() => {
+            document.body.classList.add('is-fullscreen');
+            icon.innerText = '❐'; 
+        }).catch(err => {
+            alert(`Error: ${err.message}`);
         });
-        document.getElementById('fs-icon').innerText = '⛶'; // Exit icon could be ❐
     } else {
-        document.exitFullscreen();
-        document.getElementById('fs-icon').innerText = '⛶';
+        document.exitFullscreen().then(() => {
+            document.body.classList.remove('is-fullscreen');
+            icon.innerText = '⛶';
+        });
     }
 };
+
+// Handle escape key or other ways of exiting fullscreen
+document.addEventListener('fullscreenchange', () => {
+    const icon = document.getElementById('fs-icon');
+    if (!document.fullscreenElement) {
+        document.body.classList.remove('is-fullscreen');
+        if (icon) icon.innerText = '⛶';
+    } else {
+        document.body.classList.add('is-fullscreen');
+        if (icon) icon.innerText = '❐';
+    }
+});
 
 // Update updateProgress to save state
 window.updateProgress = function (triggerConfetti = true) {

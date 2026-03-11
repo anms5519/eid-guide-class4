@@ -230,3 +230,29 @@ button:active:not(:disabled), .cursor-pointer:active {
         min-height: 44px;
     }
 }
+
+/* Fullscreen Transitions */
+#fs-icon {
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.is-fullscreen #fs-icon {
+    transform: rotate(180deg) scale(1.2);
+    color: #fbbf24; /* Amber-400 */
+}
+
+.is-fullscreen #fullscreen-btn {
+    background-color: #4338ca; /* Indigo-700 */
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.is-fullscreen #fullscreen-btn {
+    animation: pulse-glow 2s infinite;
+}
